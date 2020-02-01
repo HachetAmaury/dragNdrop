@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application should createAllSquares correctly  1`] = `ReactWrapper {}`;
+
+exports[`Application should display the correct amount of squares 1`] = `ReactWrapper {}`;
+
+exports[`Application should getOneRandomRGBColor correctly  1`] = `ReactWrapper {}`;
+
+exports[`Application should render without throwing an error 1`] = `ShallowWrapper {}`;
+
+exports[`Application should render without throwing an error 2`] = `ReactWrapper {}`;
+
+exports[`Application should switch first and second squares 1`] = `ReactWrapper {}`;
+
+exports[`Application should switch first and second then second and first squares and be unchanged 1`] = `ReactWrapper {}`;

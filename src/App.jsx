@@ -74,6 +74,7 @@ class App extends React.Component {
             squares.push(
                 <div
                     key={index}
+                    id={`square-${index}`}
                     draggable
                     onDragStart={e => {
                         this.onDragStart(e, index);
