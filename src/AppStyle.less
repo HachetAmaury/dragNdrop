@@ -1,3 +1,5 @@
+@import "./Constants.less";
+
 html,
 body {
     margin: 0;
@@ -5,7 +7,92 @@ body {
     width: 100vw;
 }
 
-.App {
+.app {
     height: 100vh;
     width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .title-container {
+
+            flex-grow: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .title {
+                flex-grow: 1;
+                text-align: center;
+            }
+        }
+
+        .board-container {
+            flex-grow: 1;
+            width: 100%;
+
+            .board {
+                display: grid;
+                grid-column-gap: 10px;
+                grid-row-gap: 10px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @medium-width) {
+    .app {
+        .container {
+            width: 90vmin;
+        }
+
+        .board-container {
+            .board {
+                height: 90vmin;
+                width: 90vmin;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: @medium-width) and (max-width: @big-width) {
+    .app {
+        .container {
+            width: 70vmin;
+        }
+
+
+        .board-container {
+            .board {
+                height: 70vmin;
+                width: 70vmin;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: @big-width) {
+    .app {
+        .container {
+            width: 50vmin;
+        }
+
+
+        .board-container {
+            .board {
+                height: 50vmin;
+                width: 50vmin;
+            }
+        }
+    }
 }
