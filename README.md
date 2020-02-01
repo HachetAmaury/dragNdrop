@@ -11,7 +11,7 @@ other boxes should maintain their positions.
 Get the repository from githup :
 
 ```
-git clone https://HachetAmaury@bitbucket.org/HachetAmaury/reactboilerplate.git
+git clone https://github.com/HachetAmaury/dragNdrop.git
 ```
 
 ### Installing
