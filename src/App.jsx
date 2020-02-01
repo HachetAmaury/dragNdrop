@@ -14,9 +14,21 @@ class App extends React.Component {
         this.state = { squares };
     }
 
+    getTotalSquares = () => {
+        return SQUARES_PER_LINE * SQUARES_PER_LINE;
+    };
+
+    getRandomColorCode() {
+        return Math.floor(Math.random() * 255);
+    }
+
+    getOneRandomRGBColor = () => {
+        return `rgb(${this.getRandomColorCode()},${this.getRandomColorCode()},${this.getRandomColorCode()})`;
+    };
+
     createAllSquares = () => {
         const squares = [];
-        const squaresAmount = SQUARES_PER_LINE * SQUARES_PER_LINE;
+        const squaresAmount = this.getTotalSquares();
 
         for (let index = 0; index < squaresAmount; index++) {
             squares.push(this.getOneRandomRGBColor());
@@ -25,24 +37,53 @@ class App extends React.Component {
         return squares;
     };
 
-    getOneRandomRGBColor = () => {
-        return `rgb(${this.getRandomColorCode()},${this.getRandomColorCode()},${this.getRandomColorCode()})`;
+    onDragStart = (ev, index) => {
+        // Store the square index in the squares array
+        // for later use in the onDrop callback
+        ev.dataTransfer.setData('index', index);
     };
 
-    getRandomColorCode() {
-        return Math.floor(Math.random() * 255);
-    }
+    onDragOver = ev => {
+        // To allow the onDrop event to be fired
+        ev.preventDefault();
+    };
+
+    onDrop = (ev, newIndex) => {
+        // Retrieve the index of the dropped square
+        const oldIndex = ev.dataTransfer.getData('index');
+        this.switchSquares(oldIndex, newIndex);
+        this.setState(this.state);
+    };
+
+    switchSquares = (oldIndex, newIndex) => {
+        const tempData = this.state.squares[oldIndex];
+        this.state.squares[oldIndex] = this.state.squares[newIndex];
+        this.state.squares[newIndex] = tempData;
+    };
+
+    getOneSquareColor = squareIndex => {
+        return this.state.squares[squareIndex];
+    };
 
     displaySquares = () => {
         const squares = [];
+        const totalSquares = this.getTotalSquares();
 
-        for (let index = 0; index < this.state.squares.length; index++) {
-            const square = this.state.squares[index];
+        for (let index = 0; index < totalSquares; index++) {
+            const squareColor = this.getOneSquareColor(index);
             squares.push(
                 <div
                     key={index}
+                    draggable
+                    onDragStart={e => {
+                        this.onDragStart(e, index);
+                    }}
+                    onDragOver={e => this.onDragOver(e)}
+                    onDrop={e => {
+                        this.onDrop(e, index);
+                    }}
                     className="square"
-                    style={{ background: square }}
+                    style={{ background: squareColor }}
                 ></div>,
             );
         }
