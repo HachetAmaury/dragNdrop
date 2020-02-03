@@ -19,7 +19,7 @@ class App extends React.Component {
     };
 
     getRandomColorCode() {
-        return Math.floor(Math.random() * 255);
+        return ~~(Math.random() * 256);
     }
 
     getOneRandomRGBColor = () => {
